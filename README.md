@@ -32,44 +32,6 @@ Content-Length: 237
 
 ```bash
 gor *.go
-# github.com/budougumi0617/simple-json-api-by-chi
-
-Sample JSON API server by go-chi.
-
-## Routes
-
-<details>
-<summary>`/*`</summary>
-
-- [Logger](/vendor/github.com/go-chi/chi/middleware/logger.go#L30)
-- **/***
-	- _*_
-		- [main.Index](/handler.go#L16)
-
-</details>
-<details>
-<summary>`/todos`</summary>
-
-- [Logger](/vendor/github.com/go-chi/chi/middleware/logger.go#L30)
-- **/todos**
-	- _POST_
-		- [main.TodoCreate](/handler.go#L36)
-	- _*_
-		- [main.TodoIndex](/handler.go#L21)
-
-</details>
-<details>
-<summary>`/todos/{todoID}`</summary>
-
-- [Logger](/vendor/github.com/go-chi/chi/middleware/logger.go#L30)
-- **/todos/{todoID}**
-	- _*_
-		- [main.TodoShow](/handler.go#L30)
-
-</details>
-
-Total # of routes: 3
-
 chi-log: logger.go:146: "GET http://localhost:8080/todos HTTP/1.1" from [::1]:57487 - 200 163B in 1.629009ms
 chi-log: logger.go:146: "POST http://localhost:8080/todos HTTP/1.1" from [::1]:57504 - 201 74B in 476.071µs
 chi-log: logger.go:146: "GET http://localhost:8080/todos HTTP/1.1" from [::1]:57526 - 200 237B in 55.556µs
@@ -88,7 +50,7 @@ Sample JSON API server by go-chi.
 <details>
 <summary>`/*`</summary>
 
-- [Logger](/vendor/github.com/go-chi/chi/middleware/logger.go#L30)
+- [Logger](https://github.com/go-chi/chi/blob/master/middleware/logger.go#L30)
 - **/***
 	- _*_
 		- [main.Index](/handler.go#L16)
@@ -97,7 +59,7 @@ Sample JSON API server by go-chi.
 <details>
 <summary>`/todos`</summary>
 
-- [Logger](/vendor/github.com/go-chi/chi/middleware/logger.go#L30)
+- [Logger](https://github.com/go-chi/chi/blob/master/middleware/logger.go#L30)
 - **/todos**
 	- _POST_
 		- [main.TodoCreate](/handler.go#L36)
@@ -108,12 +70,14 @@ Sample JSON API server by go-chi.
 <details>
 <summary>`/todos/{todoID}`</summary>
 
-- [Logger](/vendor/github.com/go-chi/chi/middleware/logger.go#L30)
+- [Logger](https://github.com/go-chi/chi/blob/master/middleware/logger.go#L30)
 - **/todos/{todoID}**
 	- _*_
 		- [main.TodoShow](/handler.go#L30)
 
 </details>
+
+Total # of routes: 3
 
 --------------
 

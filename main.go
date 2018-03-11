@@ -27,7 +27,7 @@ func newMarkdownOpts() docgen.MarkdownOpts {
 		Intro:              "Sample JSON API server by go-chi.",
 		ForceRelativeLinks: true,
 		URLMap: map[string]string{
-			"github.com/my/package/vendor/go-chi/chi/": "https://github.com/go-chi/chi/blob/master/",
+			"github.com/budougumi0617/simple-json-api-by-chi/vendor/github.com/go-chi/chi/": "https://github.com/go-chi/chi/blob/master/",
 		},
 	}
 }
