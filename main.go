@@ -7,35 +7,15 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/go-chi/chi"
 	"github.com/go-chi/docgen"
 )
 
 func main() {
-	router := chi.NewRouter()
-	router.HandleFunc("/*", Index) // WildCard.
-	router.HandleFunc("/todos", TodoIndex)
-	router.HandleFunc("/todos/{todoID}", TodoShow)
+	router := GetTodoRouter()
 
 	// Auto generate mapping information by markdown format.
 	fmt.Println(docgen.MarkdownRoutesDoc(router, newMarkdownOpts()))
 	log.Fatal(http.ListenAndServe(":8080", router))
-}
-
-// Index returns simple response.
-func Index(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "Welcome!")
-}
-
-// TodoIndex is not implemented.
-func TodoIndex(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "Todo Index!")
-}
-
-// TodoShow is not implemented.
-func TodoShow(w http.ResponseWriter, r *http.Request) {
-	todoID := chi.URLParam(r, "todoID") // Get parameter form URL PATH.
-	fmt.Fprintln(w, "Todo show:", todoID)
 }
 
 func newMarkdownOpts() docgen.MarkdownOpts {
