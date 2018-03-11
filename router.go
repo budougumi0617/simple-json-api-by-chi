@@ -16,9 +16,9 @@ func GetTodoRouter() chi.Router {
 	// Set output for logging.
 	middleware.DefaultLogger = middleware.RequestLogger(
 		&middleware.DefaultLogFormatter{
-			Logger:  newLogger(),
-			NoColor: false,
-		})
+			Logger: newLogger(),
+		},
+	)
 	router.Use(middleware.Logger)
 	router.HandleFunc("/*", Index) // WildCard.
 	router.HandleFunc("/todos", TodoIndex)
