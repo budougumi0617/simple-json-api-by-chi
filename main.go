@@ -15,6 +15,9 @@ func main() {
 
 	// Auto generate mapping information by markdown format.
 	fmt.Println(docgen.MarkdownRoutesDoc(router, newMarkdownOpts()))
+	fmt.Println("-----------------")
+	fmt.Println(docgen.JSONRoutesDoc(router))
+	fmt.Println("-----------------")
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
 

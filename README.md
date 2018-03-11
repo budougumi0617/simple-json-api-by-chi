@@ -75,7 +75,7 @@ chi-log: logger.go:146: "POST http://localhost:8080/todos HTTP/1.1" from [::1]:5
 chi-log: logger.go:146: "GET http://localhost:8080/todos HTTP/1.1" from [::1]:57526 - 200 237B in 55.556µs
 ```
 
-# codegen result
+# `docgen` result formated by Markdown
 
 --------------
 
@@ -114,6 +114,78 @@ Sample JSON API server by go-chi.
 		- [main.TodoShow](/handler.go#L30)
 
 </details>
+
+--------------
+
+# `docgen` result formated by JSON
+
+--------------
+
+```json
+{
+  "router": {
+    "middlewares": [
+      {
+        "pkg": "github.com/budougumi0617/simple-json-api-by-chi/vendor/github.com/go-chi/chi/middleware",
+        "func": "Logger",
+        "comment": "Logger is a middleware that logs the start and end of each request, along\nwith some useful data about what was requested, what the response status was,\nand how long it took to return. When standard output is a TTY, Logger will\nprint in color, otherwise it will print in black and white. Logger prints a\nrequest ID if one is provided.\n\nAlternatively, look at https://github.com/pressly/lg and the `lg.RequestLogger`\nmiddleware pkg.\n",
+        "file": "github.com/budougumi0617/simple-json-api-by-chi/vendor/github.com/go-chi/chi/middleware/logger.go",
+        "line": 30
+      }
+    ],
+    "routes": {
+      "/*": {
+        "handlers": {
+          "*": {
+            "middlewares": [],
+            "method": "*",
+            "pkg": "",
+            "func": "main.Index",
+            "comment": "Index returns simple response.\n",
+            "file": "github.com/budougumi0617/simple-json-api-by-chi/handler.go",
+            "line": 16
+          }
+        }
+      },
+      "/todos": {
+        "handlers": {
+          "*": {
+            "middlewares": [],
+            "method": "*",
+            "pkg": "",
+            "func": "main.TodoIndex",
+            "comment": "TodoIndex is not implemented.\n",
+            "file": "github.com/budougumi0617/simple-json-api-by-chi/handler.go",
+            "line": 21
+          },
+          "POST": {
+            "middlewares": [],
+            "method": "POST",
+            "pkg": "",
+            "func": "main.TodoCreate",
+            "comment": "TodoCreate add new Todo to repository\n",
+            "file": "github.com/budougumi0617/simple-json-api-by-chi/handler.go",
+            "line": 36
+          }
+        }
+      },
+      "/todos/{todoID}": {
+        "handlers": {
+          "*": {
+            "middlewares": [],
+            "method": "*",
+            "pkg": "",
+            "func": "main.TodoShow",
+            "comment": "TodoShow is not implemented.\n",
+            "file": "github.com/budougumi0617/simple-json-api-by-chi/handler.go",
+            "line": 30
+          }
+        }
+      }
+    }
+  }
+}
+```
 
 --------------
 
