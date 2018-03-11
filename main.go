@@ -4,7 +4,6 @@ package main
 
 import (
 	"fmt"
-	"html"
 	"log"
 	"net/http"
 
@@ -14,15 +13,29 @@ import (
 
 func main() {
 	router := chi.NewRouter()
-	router.Get("/*", Index) // *つけないと全てのPATHを受けない。
-	// ルーティング情報を自動生成
+	router.HandleFunc("/*", Index) // WildCard.
+	router.HandleFunc("/todos", TodoIndex)
+	router.HandleFunc("/todos/{todoID}", TodoShow)
+
+	// Auto generate mapping information by markdown format.
 	fmt.Println(docgen.MarkdownRoutesDoc(router, newMarkdownOpts()))
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
 
-// Index writes simple response
+// Index returns simple response.
 func Index(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello, %q", html.EscapeString(r.URL.Path))
+	fmt.Fprintln(w, "Welcome!")
+}
+
+// TodoIndex is not implemented.
+func TodoIndex(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintln(w, "Todo Index!")
+}
+
+// TodoShow is not implemented.
+func TodoShow(w http.ResponseWriter, r *http.Request) {
+	todoID := chi.URLParam(r, "todoID") // Get parameter form URL PATH.
+	fmt.Fprintln(w, "Todo show:", todoID)
 }
 
 func newMarkdownOpts() docgen.MarkdownOpts {
