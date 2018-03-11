@@ -23,6 +23,7 @@ func GetTodoRouter() chi.Router {
 	router.HandleFunc("/*", Index) // WildCard.
 	router.HandleFunc("/todos", TodoIndex)
 	router.HandleFunc("/todos/{todoID}", TodoShow)
+	router.Post("/todos", TodoCreate)
 	return router
 }
 
