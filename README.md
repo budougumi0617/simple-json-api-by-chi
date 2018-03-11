@@ -3,6 +3,120 @@ RESTful JSON API server by Go.
 This code is based on http://thenewstack.io/make-a-restful-json-api-go/, but HTTP router is used `go-chi` insteed of `gorilla/mux`.
 
 
+# Result
+
+`curl` result is below.
+
+```bash
+$ curl -D - -X GET http://localhost:8080/todos
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=UTF-8
+Date: Sun, 11 Mar 2018 05:14:15 GMT
+Content-Length: 163
+
+[{"id":1,"name":"Write presentation","completed":false,"due":"0001-01-01T00:00:00Z"},{"id":2,"name":"Host meetup","completed":false,"due":"0001-01-01T00:00:00Z"}]
+
+$ curl -H "Content-Type: application/json" -d '{"name":"New Todo"}' -X POST http://localhost:8080/todos
+{"id":3,"name":"New Todo","completed":false,"due":"0001-01-01T00:00:00Z"}
+
+$ curl -D - -X GET http://localhost:8080/todos
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=UTF-8
+Date: Sun, 11 Mar 2018 05:14:37 GMT
+Content-Length: 237
+
+[{"id":1,"name":"Write presentation","completed":false,"due":"0001-01-01T00:00:00Z"},{"id":2,"name":"Host meetup","completed":false,"due":"0001-01-01T00:00:00Z"},{"id":3,"name":"New Todo","completed":false,"due":"0001-01-01T00:00:00Z"}]
+```
+
+# Servr log is below.
+
+```bash
+gor *.go
+# github.com/budougumi0617/simple-json-api-by-chi
+
+Sample JSON API server by go-chi.
+
+## Routes
+
+<details>
+<summary>`/*`</summary>
+
+- [Logger](/vendor/github.com/go-chi/chi/middleware/logger.go#L30)
+- **/***
+	- _*_
+		- [main.Index](/handler.go#L16)
+
+</details>
+<details>
+<summary>`/todos`</summary>
+
+- [Logger](/vendor/github.com/go-chi/chi/middleware/logger.go#L30)
+- **/todos**
+	- _POST_
+		- [main.TodoCreate](/handler.go#L36)
+	- _*_
+		- [main.TodoIndex](/handler.go#L21)
+
+</details>
+<details>
+<summary>`/todos/{todoID}`</summary>
+
+- [Logger](/vendor/github.com/go-chi/chi/middleware/logger.go#L30)
+- **/todos/{todoID}**
+	- _*_
+		- [main.TodoShow](/handler.go#L30)
+
+</details>
+
+Total # of routes: 3
+
+chi-log: logger.go:146: "GET http://localhost:8080/todos HTTP/1.1" from [::1]:57487 - 200 163B in 1.629009ms
+chi-log: logger.go:146: "POST http://localhost:8080/todos HTTP/1.1" from [::1]:57504 - 201 74B in 476.071µs
+chi-log: logger.go:146: "GET http://localhost:8080/todos HTTP/1.1" from [::1]:57526 - 200 237B in 55.556µs
+```
+
+# codegen result
+
+--------------
+
+# github.com/budougumi0617/simple-json-api-by-chi
+
+Sample JSON API server by go-chi.
+
+## Routes
+
+<details>
+<summary>`/*`</summary>
+
+- [Logger](/vendor/github.com/go-chi/chi/middleware/logger.go#L30)
+- **/***
+	- _*_
+		- [main.Index](/handler.go#L16)
+
+</details>
+<details>
+<summary>`/todos`</summary>
+
+- [Logger](/vendor/github.com/go-chi/chi/middleware/logger.go#L30)
+- **/todos**
+	- _POST_
+		- [main.TodoCreate](/handler.go#L36)
+	- _*_
+		- [main.TodoIndex](/handler.go#L21)
+
+</details>
+<details>
+<summary>`/todos/{todoID}`</summary>
+
+- [Logger](/vendor/github.com/go-chi/chi/middleware/logger.go#L30)
+- **/todos/{todoID}**
+	- _*_
+		- [main.TodoShow](/handler.go#L30)
+
+</details>
+
+--------------
+
 # References
 - [Making a RESTful JSON API in Go](http://thenewstack.io/make-a-restful-json-api-go/)
 - https://github.com/corylanou/tns-restful-json-api
